@@ -19,9 +19,9 @@ public class PageController {
         token = (JwtAuthenticationToken) principal;
         return ResponseEntity.ok(
                 "Hello Administrator \nUser Name : "
-                + token.getTokenAttributes().get("name")
-                + "\nUser Email : "
-                + token.getTokenAttributes().get("email")
+                        + token.getTokenAttributes().get("name")
+                        + "\nUser Email : "
+                        + token.getTokenAttributes().get("email")
         );
     }
 
