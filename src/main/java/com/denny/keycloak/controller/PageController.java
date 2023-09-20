@@ -12,20 +12,28 @@ import java.security.Principal;
 @RequestMapping("/page")
 public class PageController {
 
+    private JwtAuthenticationToken token;
+
     @GetMapping("/admin")
     public ResponseEntity<String> adminPage(Principal principal) {
-        JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
-        String userName = (String) token.getTokenAttributes().get("name");
-        String userEmail = (String) token.getTokenAttributes().get("email");
-        return ResponseEntity.ok("Hello Administrator \nUser Name : " + userName + "\nUser Email : " + userEmail);
+        token = (JwtAuthenticationToken) principal;
+        return ResponseEntity.ok(
+                "Hello Administrator \nUser Name : "
+                + token.getTokenAttributes().get("name")
+                + "\nUser Email : "
+                + token.getTokenAttributes().get("email")
+        );
     }
 
     @GetMapping("/user")
     public ResponseEntity<String> userPage(Principal principal) {
-        JwtAuthenticationToken token = (JwtAuthenticationToken) principal;
-        String userName = (String) token.getTokenAttributes().get("name");
-        String userEmail = (String) token.getTokenAttributes().get("email");
-        return ResponseEntity.ok("Hello User \nUser Name : " + userName + "\nUser Email : " + userEmail);
+        token = (JwtAuthenticationToken) principal;
+        return ResponseEntity.ok(
+                "Hello User \nUser Name : "
+                        + token.getTokenAttributes().get("name")
+                        + "\nUser Email : "
+                        + token.getTokenAttributes().get("email")
+        );
     }
 
     @GetMapping("/anonymous")
